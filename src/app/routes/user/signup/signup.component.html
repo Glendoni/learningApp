@@ -28,39 +28,31 @@
                             <div class="cardbox-heading">
                         <div class="cardbox-title text-center">Reason For Joining the Club</div>
                     </div>
-                              <div class="form-group">
-                            <div [formArrayName]="'items'" [class.invalid]="!regForm.controls.selectedItems.valid">
-    <div *ngFor="let control of regForm.controls.items.controls; let i = index;" [formGroup]="control" class="form-check form-check-inline">
-      <input type="checkbox" formControlName="checkbox" id="{{ control.controls.id.value }}">
-      <label attr.for="{{ control.controls.id.value }}"><span>{{ control.controls.text.value }}</span></label>
-    </div>
-  </div>
-  <div *ngIf="!regForm.controls.selectedItems.valid" class="text-danger" [class.invalid]="!regForm.controls.selectedItems.valid" >
-    checkbox group is required!
-  </div>
+                            <div class="form-group">
+                                <div [formArrayName]="'items'" [class.invalid]="!regForm.controls.selectedItems.valid">
+                                    <div *ngFor="let control of regForm.controls.items.controls; let i = index;" [formGroup]="control" class="form-check form-check-inline">
+                                      <input type="checkbox" formControlName="checkbox" id="{{ control.controls.id.value }}">
+                                      <label attr.for="{{ control.controls.id.value }}"><span>{{ control.controls.text.value }}</span></label>
+                                    </div>
+                                </div>
+                                <div *ngIf="!regForm.controls.selectedItems.valid" class="text-danger" [class.invalid]="!regForm.controls.selectedItems.valid" >
+                                    checkbox group is required!
+                                </div>
                             </div>
   <hr>
-                              <div class="form-check form-check-inline">
-                             <label>        
-                            <input formControlName="terms" [formControl]="regForm.controls['terms']" class="form-check-input" type="checkbox" name="accountTerms" required=""  >
-                            
-                        By registering I accept the 
-                        <a>
-                        <u class="text-white">Terms of Service</u></a><span> and </span>
-                        <a>
-                        <u class="text-white">Privacy</u></a>
-                        </label>
-                                  
-                            </div>
-                             <span class="text-danger" *ngIf="regForm.controls['terms'].hasError('required') && (regForm.controls['terms'].dirty || regForm.controls['terms'].touched)">This field is required</span>
-                            
-    <div class="py-4 text-center">
-        <button [disabled]="!regForm.valid || regForm.pristine" class="btn btn-lg btn-gradient btn-oval btn-info btn-block" type="submit">Create</button>
-    </div>
+                        <div class="form-check form-check-inline">
+                            <label>        
+                                <input formControlName="terms" [formControl]="regForm.controls['terms']" class="form-check-input" type="checkbox" name="accountTerms" required=""  >
+                                By registering I accept the 
+                                <a><u class="text-white">Terms of Service</u></a><span> and </span><a><u class="text-white">Privacy</u></a>
+                            </label>
                         </div>
-                       
-</div>
-                    
+                        <span class="text-danger" *ngIf="regForm.controls['terms'].hasError('required') && (regForm.controls['terms'].dirty || regForm.controls['terms'].touched)">This field is required</span>  
+                        <div class="py-4 text-center">
+                            <button [disabled]="!regForm.valid || regForm.pristine" class="btn btn-lg btn-gradient btn-oval btn-info btn-block" type="submit">Create</button>
+                        </div>
+                    </div>   
+                    </div> 
                 </form>
                 
             </div>

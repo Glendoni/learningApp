@@ -16,9 +16,9 @@ export class SignupComponent implements OnInit {
  loading = false;
     regForm: FormGroup;
      items = [
-    {key: 'item1', text: ' Practice a language'},
-    {key: 'item2', text: ' Help people to practice thier spoken language'},
-    {key: 'item3', text: ' I am a professional teacher'},
+    {key: 1, text: ' Practice a language'},
+    {key: 2, text: ' Help people to practice thier spoken language'},
+    {key: 3, text: ' I am a professional teacher'},
   ];
 
     submitted = false;
