@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { SelectModule } from 'ng2-select';
 import { SharedModule } from '../../shared/shared.module';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
@@ -19,6 +19,7 @@ import { Signinv2Component } from './signinv2/signinv2.component';
 @NgModule({
     imports: [
         SharedModule,
+        SelectModule,
         // RouterModule.forChild(routes)
     ],
     declarations: [

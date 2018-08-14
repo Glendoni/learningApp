@@ -4,7 +4,7 @@
             <div class="container container-xs">
                 <form [formGroup]="regForm" (submit)="submitForm($event, regForm)" class="cardbox cardbox-flat text-white form-validate text-color" id="user-signup" action="" name="createForm" novalidate="">
                     <div class="cardbox-heading">
-                        <div class="cardbox-title text-center">Create account</div>
+                        <div class="cardbox-title text-center">Register Your Account Step (1 of 2) </div>
                     </div>
                     <div class="cardbox-body pb-0">
                         <div class="px-5">
@@ -39,22 +39,95 @@
                                     checkbox group is required!
                                 </div>
                             </div>
-  <hr>
-                        <div class="form-check form-check-inline">
-                            <label>        
-                                <input formControlName="terms" [formControl]="regForm.controls['terms']" class="form-check-input" type="checkbox" name="accountTerms" required=""  >
-                                By registering I accept the 
-                                <a><u class="text-white">Terms of Service</u></a><span> and </span><a><u class="text-white">Privacy</u></a>
-                            </label>
+                            <hr>
+                              <h6>What language do you speak? </h6>
+                                <div class="form-group">
+                                   
+                                     <ng-select formControlName="languageSpoken"   (data)="value" [multiple]="false" [items]="itemss" [disabled]="disabled" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="No language selected"></ng-select>
+                                    <span class="text-danger" *ngIf="regForm.controls['languageSpoken'].hasError('required') && (regForm.controls['languageSpoken'].dirty || regForm.controls['languageSpoken'].touched)">This field is required</span>
+                                </div>
+                            
+                            <h6>Level </h6>
+                            <div class="form-group">
+                                
+                                  
+                                  <ng-select formControlName="languageSpokenLevel" required=""    (data)="value" [multiple]="false" [items]="languageSpokenLevels" [disabled]="disabled" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="Click to select"></ng-select>
+                                
+                                    <span class="text-danger" *ngIf="regForm.controls['languageSpokenLevel'].hasError('required') && (regForm.controls['languageSpokenLevel'].dirty || regForm.controls['languageSpokenLevel'].touched)">This field is required</span>
+                                </div>
+                            
+                            
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" formControlName="contribute" type="checkbox" id="inlineCheckbox1" value="1"> Contribute to Community
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" formControlName="qualified" id="inlineCheckbox2" value="2"> Qualified Teacher
+                                    </label>
+                                </div>
+                            <hr />
+                            <p>Other Langauges</p>
+                                <div formArrayName="aliases">
+                                    <button (click)="addAlias()">Add</button>
+                                    <div *ngFor="let address of aliases.controls; let i=index">
+                                    <!-- The repeated alias template -->
+                                 
+                                    <label>
+                                    other Language:
+                                  
+                                         <ng-select [formControlName]="i" required=""    (data)="value" [multiple]="false" [items]="itemss"  (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="Click to select"></ng-select>
+                                        
+                                        
+                                    </label>
+                                        <br />
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" [formControlName]="i" type="checkbox"   value="1"> Contribute to Community
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" [formControlName]="i"  value="2"> Qualified Teacher
+                                    </label>
+                                </div>
+                            <hr />
+                                    
+                                    </div>
+                                </div>
+                    
+                        
+                            
+                            <label class="mt-2">What languages would you like to practice?</label>
+                           
+                            
+                            <ng-select formControlName="learning_requested"   (data)="value" [multiple]="true" [items]="itemss" [disabled]="disabled" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="No language selected"></ng-select>
+                             <span class="text-danger" *ngIf="regForm.controls['learning_requested'].hasError('required') && (regForm.controls['name'].dirty || regForm.controls['learning_requested'].touched)">This field is required</span>
+                            
+                            
+   
+                            
+                            
+                            <div class="form-check form-check-inline">
+                                <label>        
+                                    <input formControlName="terms" [formControl]="regForm.controls['terms']" class="form-check-input" type="checkbox" name="accountTerms" required=""  >
+                                    By registering I accept the 
+                                    <a><u class="text-white">Terms of Service</u></a><span> and </span><a><u class="text-white">Privacy</u></a>
+                                </label>
+                                
+                            </div>
+                            <span class="text-danger" *ngIf="regForm.controls['terms'].hasError('required') && (regForm.controls['terms'].dirty || regForm.controls['terms'].touched)">This field is required</span>  
+                           <div class="py-4 text-center">
+                            <button [disabled]="!regForm.valid || regForm.pristine" class="btn btn-lg btn-gradient btn-oval btn-info btn-block" type="button">Next</button>
                         </div>
-                        <span class="text-danger" *ngIf="regForm.controls['terms'].hasError('required') && (regForm.controls['terms'].dirty || regForm.controls['terms'].touched)">This field is required</span>  
                         <div class="py-4 text-center">
                             <button [disabled]="!regForm.valid || regForm.pristine" class="btn btn-lg btn-gradient btn-oval btn-info btn-block" type="submit">Create</button>
                         </div>
                     </div>   
                     </div> 
                 </form>
-                
+                {{ regForm.multiples | json}}
             </div>
         </div>
     </div>
