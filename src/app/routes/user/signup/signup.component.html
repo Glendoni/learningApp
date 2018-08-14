@@ -41,17 +41,18 @@
                             </div>
                             <hr>
                               <h6>What language do you speak? </h6>
+                             <h6>Native Language: </h6>
                                 <div class="form-group">
                                    
-                                     <ng-select formControlName="languageSpoken"   (data)="value" [multiple]="false" [items]="itemss" [disabled]="disabled" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="No language selected"></ng-select>
+                                     <ng-select formControlName="languageSpoken"   (data)="value" [multiple]="false" [items]="itemss"  (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="No language selected"></ng-select>
                                     <span class="text-danger" *ngIf="regForm.controls['languageSpoken'].hasError('required') && (regForm.controls['languageSpoken'].dirty || regForm.controls['languageSpoken'].touched)">This field is required</span>
                                 </div>
                             
-                            <h6>Level </h6>
+                            <h6>Level: </h6>
                             <div class="form-group">
                                 
                                   
-                                  <ng-select formControlName="languageSpokenLevel" required=""    (data)="value" [multiple]="false" [items]="languageSpokenLevels" [disabled]="disabled" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="Click to select"></ng-select>
+                                  <ng-select formControlName="languageSpokenLevel" required=""    (data)="value" [multiple]="false" [items]="languageSpokenLevels" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="Click to select"></ng-select>
                                 
                                     <span class="text-danger" *ngIf="regForm.controls['languageSpokenLevel'].hasError('required') && (regForm.controls['languageSpokenLevel'].dirty || regForm.controls['languageSpokenLevel'].touched)">This field is required</span>
                                 </div>
@@ -68,42 +69,43 @@
                                     </label>
                                 </div>
                             <hr />
-                            <p>Other Langauges</p>
-                                <div formArrayName="aliases">
-                                    <button (click)="addAlias()">Add</button>
-                                    <div *ngFor="let address of aliases.controls; let i=index">
-                                    <!-- The repeated alias template -->
-                                 
-                                    <label>
-                                    other Language:
-                                  
-                                         <ng-select [formControlName]="i" required=""    (data)="value" [multiple]="false" [items]="itemss"  (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="Click to select"></ng-select>
-                                        
-                                        
-                                    </label>
-                                        <br />
-                                <div class="form-check form-check-inline">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" [formControlName]="i" type="checkbox"   value="1"> Contribute to Community
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" [formControlName]="i"  value="2"> Qualified Teacher
-                                    </label>
-                                </div>
-                            <hr />
-                                    
-                                    </div>
-                                </div>
+                           
                     
-                        
+                             <h6>Other Languages: </h6>
+                              
+                                                   
+                            <div formArrayName="ittems"
+  *ngFor="let item of regForm.get('ittems').controls; let i = index;">
+  <div [formGroupName]="i">
+      
+      
+     <ng-select formControlName="additional_langauges"  (data)="value" [multiple]="false" [items]="itemss"  (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="Click to select"></ng-select>
+      
+ <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" formControlName="contribute_to_community" type="checkbox"  value="1"> Contribute to Community
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" formControlName="qualified_teacher"  value="2"> Qualified Teacher
+                                    </label>
+                                </div>
+        <div class="form-check ">
+  <p>remove Button Here</p>
+      </div>
+  </div>
+ <hr /> 
+</div>
+                            <div><a href="javascript:;" class="btn btn-primary float-righ" (click)="addItem()">Add</a></div> 
+                            
+        <hr />
                             
                             <label class="mt-2">What languages would you like to practice?</label>
                            
                             
-                            <ng-select formControlName="learning_requested"   (data)="value" [multiple]="true" [items]="itemss" [disabled]="disabled" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="No language selected"></ng-select>
-                             <span class="text-danger" *ngIf="regForm.controls['learning_requested'].hasError('required') && (regForm.controls['name'].dirty || regForm.controls['learning_requested'].touched)">This field is required</span>
+                            <ng-select formControlName="learning_requested"   (data)="value" [multiple]="true" [items]="itemss"  (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="No language selected"></ng-select>
+                            
                             
                             
    
@@ -127,7 +129,7 @@
                     </div>   
                     </div> 
                 </form>
-                {{ regForm.multiples | json}}
+                {{ regForm.value | json}}
             </div>
         </div>
     </div>

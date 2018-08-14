@@ -7,6 +7,8 @@ import { CustomValidators } from 'ng2-validation';
 import { first } from 'rxjs/operators';
 import { AlertService, UserService } from '../../../_services';
 
+
+
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
@@ -35,146 +37,11 @@ export class SignupComponent implements OnInit {
      dt;
     
     
-       itemss = [
- {id: 'en', text: 'English'},
-{id: 'aa', text: 'Afar'},
-{id: 'ab', text: 'Abkhazian'},
-{id: 'af', text: 'Afrikaans'},
-{id: 'am', text: 'Amharic'},
-{id: 'ar', text: 'Arabic'},
-{id: 'as', text: 'Assamese'},
-{id: 'ay', text: 'Aymara'},
-{id: 'az', text: 'Azerbaijani'},
-{id: 'ba', text: 'Bashkir'},
-{id: 'be', text: 'Byelorussian'},
-{id: 'bg', text: 'Bulgarian'},
-{id: 'bh', text: 'Bihari'},
-{id: 'bi', text: 'Bislama'},
-{id: 'bn', text: 'Bengali/Bangla'},
-{id: 'bo', text: 'Tibetan'},
-{id: 'br', text: 'Breton'},
-{id: 'ca', text: 'Catalan'},
-{id: 'co', text: 'Corsican'},
-{id: 'cs', text: 'Czech'},
-{id: 'cy', text: 'Welsh'},
-{id: 'da', text: 'Danish'},
-{id: 'de', text: 'German'},
-{id: 'dz', text: 'Bhutani'},
-{id: 'el', text: 'Greek'},
-{id: 'eo', text: 'Esperanto'},
-{id: 'es', text: 'Spanish'},
-{id: 'et', text: 'Estonian'},
-{id: 'eu', text: 'Basque'},
-{id: 'fa', text: 'Persian'},
-{id: 'fi', text: 'Finnish'},
-{id: 'fj', text: 'Fiji'},
-{id: 'fo', text: 'Faeroese'},
-{id: 'fr', text: 'French'},
-{id: 'fy', text: 'Frisian'},
-{id: 'ga', text: 'Irish'},
-{id: 'gd', text: 'Scots/Gaelic'},
-{id: 'gl', text: 'Galician'},
-{id: 'gn', text: 'Guarani'},
-{id: 'gu', text: 'Gujarati'},
-{id: 'ha', text: 'Hausa'},
-{id: 'hi', text: 'Hindi'},
-{id: 'hr', text: 'Croatian'},
-{id: 'hu', text: 'Hungarian'},
-{id: 'hy', text: 'Armenian'},
-{id: 'ia', text: 'Interlingua'},
-{id: 'ie', text: 'Interlingue'},
-{id: 'ik', text: 'Inupiak'},
-{id: 'in', text: 'Indonesian'},
-{id: 'is', text: 'Icelandic'},
-{id: 'it', text: 'Italian'},
-{id: 'iw', text: 'Hebrew'},
-{id: 'ja', text: 'Japanese'},
-{id: 'ji', text: 'Yiddish'},
-{id: 'jw', text: 'Javanese'},
-{id: 'ka', text: 'Georgian'},
-{id: 'kk', text: 'Kazakh'},
-{id: 'kl', text: 'Greenlandic'},
-{id: 'km', text: 'Cambodian'},
-{id: 'kn', text: 'Kannada'},
-{id: 'ko', text: 'Korean'},
-{id: 'ks', text: 'Kashmiri'},
-{id: 'ku', text: 'Kurdish'},
-{id: 'ky', text: 'Kirghiz'},
-{id: 'la', text: 'Latin'},
-{id: 'ln', text: 'Lingala'},
-{id: 'lo', text: 'Laothian'},
-{id: 'lt', text: 'Lithuanian'},
-{id: 'lv', text: 'Latvian/Lettish'},
-{id: 'mg', text: 'Malagasy'},
-{id: 'mi', text: 'Maori'},
-{id: 'mk', text: 'Macedonian'},
-{id: 'ml', text: 'Malayalam'},
-{id: 'mn', text: 'Mongolian'},
-{id: 'mo', text: 'Moldavian'},
-{id: 'mr', text: 'Marathi'},
-{id: 'ms', text: 'Malay'},
-{id: 'mt', text: 'Maltese'},
-{id: 'my', text: 'Burmese'},
-{id: 'na', text: 'Nauru'},
-{id: 'ne', text: 'Nepali'},
-{id: 'nl', text: 'Dutch'},
-{id: 'no', text: 'Norwegian'},
-{id: 'oc', text: 'Occitan'},
-{id: 'om', text: '(Afan)/Oromoor/Oriya'},
-{id: 'pa', text: 'Punjabi'},
-{id: 'pl', text: 'Polish'},
-{id: 'ps', text: 'Pashto/Pushto'},
-{id: 'pt', text: 'Portuguese'},
-{id: 'qu', text: 'Quechua'},
-{id: 'rm', text: 'Rhaeto-Romance'},
-{id: 'rn', text: 'Kirundi'},
-{id: 'ro', text: 'Romanian'},
-{id: 'ru', text: 'Russian'},
-{id: 'rw', text: 'Kinyarwanda'},
-{id: 'sa', text: 'Sanskrit'},
-{id: 'sd', text: 'Sindhi'},
-{id: 'sg', text: 'Sangro'},
-{id: 'sh', text: 'Serbo-Croatian'},
-{id: 'si', text: 'Singhalese'},
-{id: 'sk', text: 'Slovak'},
-{id: 'sl', text: 'Slovenian'},
-{id: 'sm', text: 'Samoan'},
-{id: 'sn', text: 'Shona'},
-{id: 'so', text: 'Somali'},
-{id: 'sq', text: 'Albanian'},
-{id: 'sr', text: 'Serbian'},
-{id: 'ss', text: 'Siswati'},
-{id: 'st', text: 'Sesotho'},
-{id: 'su', text: 'Sundanese'},
-{id: 'sv', text: 'Swedish'},
-{id: 'sw', text: 'Swahili'},
-{id: 'ta', text: 'Tamil'},
-{id: 'te', text: 'Tegulu'},
-{id: 'tg', text: 'Tajik'},
-{id: 'th', text: 'Thai'},
-{id: 'ti', text: 'Tigrinya'},
-{id: 'tk', text: 'Turkmen'},
-{id: 'tl', text: 'Tagalog'},
-{id: 'tn', text: 'Setswana'},
-{id: 'to', text: 'Tonga'},
-{id: 'tr', text: 'Turkish'},
-{id: 'ts', text: 'Tsonga'},
-{id: 'tt', text: 'Tatar'},
-{id: 'tw', text: 'Twi'},
-{id: 'uk', text: 'Ukrainian'},
-{id: 'ur', text: 'Urdu'},
-{id: 'uz', text: 'Uzbek'},
-{id: 'vi', text: 'Vietnamese'},
-{id: 'vo', text: 'Volapuk'},
-{id: 'wo', text: 'Wolof'},
-{id: 'xh', text: 'Xhosa'},
-{id: 'yo', text: 'Yoruba'},
-{id: 'zh', text: 'Chinese'},
-{id: 'zu', text: 'Zulu'}
- ];
-    
+       itemss=[];
+    ittems;
     
     regForm: FormGroup;
+    
      items = [
     {key: 1, text: ' Practice a language'},
     {key: 2, text: ' Help people to practice thier spoken language'},
@@ -234,35 +101,37 @@ languageSpokenLevels = [{
             'password_confirmation': loginPasswordConfirm,
             items: checkboxGroup,
             selectedItems: hiddenControl,
-            learning_requested : [null, Validators.compose([])],
+            learning_requested : null,
             languageSpoken : [null, Validators.compose([Validators.required])],
             learning_requestedss : [null, Validators.compose([])],
             contribute : [true],
             qualified  : [true],
+            ittems: this.fb.array([ this.createItem() ]),
             languageSpokenLevel  : [['Beginer'], Validators.compose([Validators.required])],
-              aliases: this.fb.array([
-                    this.fb.control('')
-                ])
-        });
-        
-        
-        
-        
-        
+            
+        });  
     }
+    
+    
+
    
       get aliases() {
     return this.regForm.get('aliases') as FormArray;
   }
-    get f() { return this.regForm.controls; }
     
-    addAlias() {
-         
+        addAlias() {
     this.aliases.push(this.fb.control(''));
-        this.alias = true;
   }
     
+    get f() { return this.regForm.controls; }
+ 
     
+ 
+    getLanguage() {
+            this.userService.getLanguage()
+      .subscribe(lang => this.itemss = lang);
+  } 
+  
     submitForm($ev, form: FormGroup) {
         $ev.preventDefault();
         let value = form.value;
@@ -280,6 +149,11 @@ languageSpokenLevels = [{
         }
 
         this.loading = true;
+            
+            
+   
+    
+            
         this.userService.create(this.regForm.value)
             .pipe(first())
             .subscribe(
@@ -296,6 +170,7 @@ languageSpokenLevels = [{
     }
 
     ngOnInit() {
+         this.getLanguage() ;
     }
     
     
@@ -306,10 +181,20 @@ languageSpokenLevels = [{
     
     
     
-      addAlias() {
-    this.aliases.push(this.fb.control(''));
-  }
-
+  
+        addItem(): void {
+  this.ittems = this.regForm.get('ittems') as FormArray;
+  this.ittems.push(this.createItem());
+}
+   createItem(): FormGroup {
+       
+  return this.fb.group({
+    additional_langauges: [null, Validators.compose([])],
+    contribute_to_community: '',
+    qualified_teacher: ''
+  });
+       
+}
     
       //ng2 select
     public get disabledV(): string {

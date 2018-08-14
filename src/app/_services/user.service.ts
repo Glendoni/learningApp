@@ -2,7 +2,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
-import { User } from '../_models';
+import { User, Language } from '../_models';
 
 @Injectable()
 export class UserService {
@@ -37,5 +37,10 @@ export class UserService {
 
     delete(id: number) {
         return this.http.delete(this.url+'/api/users/' + id);
+    }
+    
+    getLanguage(){
+        
+         return this.http.get<Language[]>(this.url+'/api/lang');
     }
 }  
