@@ -16,6 +16,34 @@ import { AlertService, UserService } from '../../../_services';
     encapsulation: ViewEncapsulation.None
 })
 export class SignupComponent implements OnInit {
+    
+    
+    clickMessage = '';
+    
+    box = 0;
+
+  onClickMe(event : any) {
+      
+      if(event.target.id ==1){
+      if(event.target.id ==1 & this.box == 0){
+          this.box = 1;  
+          this.addPrac();
+      }else{
+         
+          this.removedPrac(0);
+          
+      }
+          console.log(this.box);
+          
+       console.log(event.target.id )
+        if ( event.target.checked ) {
+        }
+    }
+      
+      //this.removedPrac(0) 
+ // value ?  '' : this.addPrac(0)
+    this.clickMessage = 'You are my hero!';
+  }
  loading = false;
     alias = true;
      public value: any = {};
@@ -39,6 +67,7 @@ export class SignupComponent implements OnInit {
     
        itemss=[];
     ittems;
+    prac;
     
     regForm: FormGroup;
     
@@ -88,40 +117,107 @@ languageSpokenLevels = [{
       hiddenControl.setValue(this.mapItems(v));
     });
         
-        let loginPassword = new FormControl('doctor1', Validators.required);
-        let loginPasswordConfirm = new FormControl('doctor1', CustomValidators.equalTo(loginPassword));
+        let loginPassword = new FormControl('test123', Validators.required);
+        let loginPasswordConfirm = new FormControl('test123', CustomValidators.equalTo(loginPassword));
         
          let level = new FormControl('',  Validators.required);
         
         this.regForm = fb.group({
-            'email': ['', Validators.compose([Validators.required, CustomValidators.email])],
+            'email': ['@test.com', Validators.compose([Validators.required, CustomValidators.email])],
             'terms': [true, Validators.compose([Validators.required])],
-            'name': ['', Validators.compose([Validators.required])],
+            'name': ['Test', Validators.compose([Validators.required])],
             'password': loginPassword,
             'password_confirmation': loginPasswordConfirm,
             items: checkboxGroup,
             selectedItems: hiddenControl,
-            learning_requested : null,
+            
             languageSpoken : [null, Validators.compose([Validators.required])],
             learning_requestedss : [null, Validators.compose([])],
             contribute : [true],
             qualified  : [true],
-            ittems: this.fb.array([ this.createItem() ]),
+            
+            ittems: this.fb.array([
+              
+            ]),
+            prac: this.fb.array([
+         
+            ]),
             languageSpokenLevel  : [['Beginer'], Validators.compose([Validators.required])],
+              aliases: this.fb.array([
+                this.fb.control(''),
+                    this.createItem()
+                    
+              ]), practice: this.fb.array([
+                this.fb.control(''),
+                   
+                     this.createItemPractice()
+              ])
+ 
             
         });  
+          this.initItemRows()
     }
     
     
-
+    
+  createItemPractice(): FormGroup {
+    return this.fb.group({
+         learning_requested: null
+    })
+}  
    
-      get aliases() {
+ get practice() {
+    return this.regForm.get('practice') as FormArray;
+  }
+
+    addPractice() {
+             this.practice.push(this.fb.control(''));
+  }
+addPrac(): void {
+  this.prac = this.regForm.get('prac') as FormArray;
+  this.prac.push(this.createItemPractice());
+} 
+    
+public removedPrac(value: any): void {
+        console.log('Removed value is: ', value);
+          this.prac.removeAt(value);
+          this.box =0;
+}
+      
+    
+     initItemRows() {
+    let ctrl = this.regForm.get('practice') as FormArray;
+    ctrl.push(this.fb.group({
+        
+      learning_requested: ['']
+             
+    }))
+  } 
+    
+
+get aliases() {
     return this.regForm.get('aliases') as FormArray;
   }
     
         addAlias() {
     this.aliases.push(this.fb.control(''));
-  }
+  } 
+    
+addItem(): void {
+  this.ittems = this.regForm.get('ittems') as FormArray;
+  this.ittems.push(this.createItem());
+}
+   createItem(): FormGroup {
+       
+  return this.fb.group({
+    additional_langauges: [null, Validators.compose([])],
+    contribute_to_community: '',
+    languageSpokenLevelArr : null,
+    qualified_teacher: ''
+      
+  });
+       
+}
     
     get f() { return this.regForm.controls; }
  
@@ -141,19 +237,15 @@ languageSpokenLevels = [{
         if (form.valid) {
             console.log('Valid!');
             this.submitted = true;
-
+        }
         // stop here if form is invalid
         if (this.regForm.invalid) {
              console.log('inValid!');
             return;
         }
-
+        
         this.loading = true;
-            
-            
-   
-    
-            
+ 
         this.userService.create(this.regForm.value)
             .pipe(first())
             .subscribe(
@@ -165,12 +257,14 @@ languageSpokenLevels = [{
                     this.alertService.error(error);
                     this.loading = false;
                 });
-        }
+     
         console.log(value);
+        
     }
 
     ngOnInit() {
          this.getLanguage() ;
+         
     }
     
     
@@ -182,19 +276,7 @@ languageSpokenLevels = [{
     
     
   
-        addItem(): void {
-  this.ittems = this.regForm.get('ittems') as FormArray;
-  this.ittems.push(this.createItem());
-}
-   createItem(): FormGroup {
-       
-  return this.fb.group({
-    additional_langauges: [null, Validators.compose([])],
-    contribute_to_community: '',
-    qualified_teacher: ''
-  });
-       
-}
+
     
       //ng2 select
     public get disabledV(): string {
@@ -212,7 +294,9 @@ languageSpokenLevels = [{
 
     public removed(value: any): void {
         console.log('Removed value is: ', value);
+          this.ittems.removeAt(value);
     }
+ 
 
     public typed(value: any): void {
         console.log('New search input: ', value);

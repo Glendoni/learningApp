@@ -26,12 +26,12 @@
                                 <span class="text-danger" *ngIf="regForm.controls['password_confirmation'].errors?.equalTo">Input does Not match</span>
                             </div>
                             <div class="cardbox-heading">
-                        <div class="cardbox-title text-center">Reason For Joining the Club</div>
+                        <div class="cardbox-title text-center">Reason For Joining the Club </div>
                     </div>
                             <div class="form-group">
                                 <div [formArrayName]="'items'" [class.invalid]="!regForm.controls.selectedItems.valid">
                                     <div *ngFor="let control of regForm.controls.items.controls; let i = index;" [formGroup]="control" class="form-check form-check-inline">
-                                      <input type="checkbox" formControlName="checkbox" id="{{ control.controls.id.value }}">
+                                      <input type="checkbox" formControlName="checkbox"  (click)="onClickMe($event)" id="{{ control.controls.id.value }}">
                                       <label attr.for="{{ control.controls.id.value }}"><span>{{ control.controls.text.value }}</span></label>
                                     </div>
                                 </div>
@@ -75,11 +75,26 @@
                               
                                                    
                             <div formArrayName="ittems"
-  *ngFor="let item of regForm.get('ittems').controls; let i = index;">
-  <div [formGroupName]="i">
+  *ngFor="let item of regForm.get('ittems').controls; let p = index;">
+  <div [formGroupName]="p">
       
       
-     <ng-select formControlName="additional_langauges"  (data)="value" [multiple]="false" [items]="itemss"  (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="Click to select"></ng-select>
+     <ng-select formControlName="additional_langauges"  (data)="value"  [items]="itemss"  (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="Click to select"></ng-select>
+      
+      
+      
+      
+          <h6>Level: </h6>
+                            <div class="form-group">
+                                
+                                  
+                                  <ng-select formControlName="languageSpokenLevelArr" required=""    (data)="value" [multiple]="false" [items]="languageSpokenLevels" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="Click to select"></ng-select>
+                                
+                                    <span class="text-danger" *ngIf="item.controls['languageSpokenLevelArr'].hasError('required') && (item.controls['languageSpokenLevelArr'].dirty || item.controls['languageSpokenLevelArr'].touched)">This field is required</span>
+                                </div>
+      
+      
+      
       
  <div class="form-check form-check-inline">
                                     <label class="form-check-label">
@@ -92,7 +107,9 @@
                                     </label>
                                 </div>
         <div class="form-check ">
-  <p>remove Button Here</p>
+ 
+            <button type="button" (click)="removed(p)">Delete</button>
+    
       </div>
   </div>
  <hr /> 
@@ -101,15 +118,18 @@
                             
         <hr />
                             
-                            <label class="mt-2">What languages would you like to practice?</label>
-                           
+ <div formArrayName="prac" *ngFor="let item of regForm.get('prac').controls; let g = index;">
+  <div [formGroupName]="g">
                             
-                            <ng-select formControlName="learning_requested"   (data)="value" [multiple]="true" [items]="itemss"  (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="No language selected"></ng-select>
-                            
-                            
-                            
-   
-                            
+           <label class="mt-2">What languages would you like to practice?</label>
+             <ng-select formControlName="learning_requested"   (data)="value" [multiple]="true" [items]="itemss"  (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="No language selected"></ng-select><!-- <button type="button" (click)="removedPrac(g)">Delete</button> -->
+             </div> 
+           <div *ngIf="regForm.controls['languageSpokenLevel'].hasError('required') && (regForm.controls['languageSpokenLevel'].dirty || regForm.controls['languageSpokenLevel'].touched)">Required</div> 
+                                 
+</div>
+                        
+                          
+
                             
                             <div class="form-check form-check-inline">
                                 <label>        
@@ -121,14 +141,16 @@
                             </div>
                             <span class="text-danger" *ngIf="regForm.controls['terms'].hasError('required') && (regForm.controls['terms'].dirty || regForm.controls['terms'].touched)">This field is required</span>  
                            <div class="py-4 text-center">
-                            <button [disabled]="!regForm.valid || regForm.pristine" class="btn btn-lg btn-gradient btn-oval btn-info btn-block" type="button">Next</button>
+                            <!--<button [disabled]="!regForm.valid || regForm.pristine" class="btn btn-lg btn-gradient btn-oval btn-info btn-block" type="button">Next</button> -->
                         </div>
                         <div class="py-4 text-center">
-                            <button [disabled]="!regForm.valid || regForm.pristine" class="btn btn-lg btn-gradient btn-oval btn-info btn-block" type="submit">Create</button>
+                            <!-- <button [disabled]="!regForm.valid || regForm.pristine -->
+                            <button [disabled]="" class="btn btn-lg btn-gradient btn-oval btn-info btn-block" type="submit">Create</button>
                         </div>
                     </div>   
                     </div> 
                 </form>
+                {{ regForm.valid | json}}
                 {{ regForm.value | json}}
             </div>
         </div>
