@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit {
   onClickMe(event : any) {
       
       if(event.target.id ==1){
-      if(event.target.id ==1 & this.box == 0){
+      if(event.target.id ==1 && this.box == 0){
           this.box = 1;  
           this.addPrac();
       }else{

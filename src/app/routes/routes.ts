@@ -6,6 +6,9 @@ import { AuthGuard } from '../_guards';
 import { RecoverComponent } from './user/recover/recover.component';
 import { Signinv2Component } from './user/signinv2/signinv2.component';
 import { Signupv2Component } from './user/signupv2/signupv2.component';
+import { HomeComponent } from './user/home/home.component';
+import { SearchComponent } from './user/search/search.component';
+import { CommunityComponent } from './user/community/community.component';
 
 export const routes = [
 
@@ -13,8 +16,6 @@ export const routes = [
         path: '',
         component: LayoutComponent, canActivate: [AuthGuard],
         children: [
-
-           
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'kanban', loadChildren: './kanban/kanban.module#DashboardModule' },
             { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' },
@@ -37,7 +38,9 @@ export const routes = [
     { path: 'recover', component: RecoverComponent },
     { path: 'signinv2', component: Signinv2Component },
     { path: 'signupv2', component: Signupv2Component },
-
+    { path: 'home', component: HomeComponent },
+    { path: 'search', component: SearchComponent },
+    { path: 'community/:id', component: CommunityComponent },
     // Not found
     { path: '**', redirectTo: 'signin' }
 

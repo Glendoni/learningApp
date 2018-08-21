@@ -1,0 +1,21 @@
+ 
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<label>Practice another language</label>: 
+ 
+    
+     <input #searchBox id="search-box" (keyup)="search(searchBox.value)" type="text" placeholder="Search.." name="search" class="example">
+  <button type="submit"><i class="fa fa-search example"></i></button>
+
+<ul class="search-result">
+<li *ngFor="let search of searches$ | async"  (click)="gotoCommunity(search)"  >
+ 
+
+    <div routerLinkActive="active"><span>{{search.description}}</span></div>
+ 
+</li>
+</ul>
+ 
+</div>
+
+
+

@@ -16,6 +16,7 @@ import { RoutesModule } from './routes/routes.module';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor } from './_helpers';
 import { AlertService, AuthenticationService, UserService } from './_services';
+import { HomeComponent } from './home/home.component';
 
 // https://github.com/ocombe/ng2-translate/issues/218
 export function createTranslateLoader(http: HttpClient) {
@@ -24,7 +25,8 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        HomeComponent
     ],
     imports: [
         HttpClientModule,

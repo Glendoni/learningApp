@@ -8,6 +8,9 @@ import { LockComponent } from './lock/lock.component';
 import { RecoverComponent } from './recover/recover.component';
 import { Signupv2Component } from './signupv2/signupv2.component';
 import { Signinv2Component } from './signinv2/signinv2.component';
+import { HomeComponent } from './home/home.component';
+import { SearchComponent } from './search/search.component';
+import { CommunityComponent } from './community/community.component';
 
 // const routes: Routes = [
 //     { path: 'signin', component: SigninComponent },
@@ -28,7 +31,10 @@ import { Signinv2Component } from './signinv2/signinv2.component';
         LockComponent,
         RecoverComponent,
         Signupv2Component,
-        Signinv2Component
+        Signinv2Component,
+        HomeComponent,
+        SearchComponent,
+        CommunityComponent
     ],
     exports: [
         RouterModule,

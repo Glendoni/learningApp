@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h4>Live Native Users: (Currently Online)</h4>
+    </div>
+</div>
+<hr /> 
+<div *ngIf="nativeOnlines">
+<div class="row">
+    
+   
+        <div *ngFor="let nativeOnline of nativeOnlines.nativeOnline" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 commnunity">
+            <p align="center"> <img alt="community-user-image" class="community-img-circle" src="assets/img/user/01.jpg"><br /><span>{{ nativeOnline.name}}</span></p>
+            <button align="center" type="button" class="btn btn-info" (click)="onSelect(nativeOnline)">View</button>
+        </div>
+    </div>
+</div>
+<div *ngIf="!nativeOnlines">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h4>Not found</h4>
+        </div>
+
+    </div>
+</div>
