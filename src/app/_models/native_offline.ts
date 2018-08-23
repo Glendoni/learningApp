@@ -1,4 +1,4 @@
-﻿export interface NativeOnline {
+﻿export interface NativeOffline {
 	id: number;
     name: string;
 	qualified_teacher: number;
@@ -10,6 +10,5 @@
 }
 
 export interface RootObject {
-	nativeOnline: NativeOnline[];
+	nativeOffline: NativeOffline[];
 }
-

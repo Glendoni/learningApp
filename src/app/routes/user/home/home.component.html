@@ -1,24 +1,18 @@
-<div class="container">
+<h1 align="center">HOMEPAGE</h1>
+<app-recent-practices></app-recent-practices>
+<hr />
+ 
+ 
 
-
-<h1 align="center">Home Page</h1>
-<h4>Language Search</h4>
-
-<div class="row">
-    
-<app-search></app-search>
+    <div class="row">
+        <app-search></app-search>
     </div>
  
 
 <div class="row">
-   
-
-
-
-    <div *ngFor="let random_practice_suggestion of random_practice_suggestions" class="col-sm-2 random_practice_suggestion">
-        <img alt="community-user-image" class="community-img-circle" src="assets/flags-mini/{{random_practice_suggestion.code }}.png"><br />
-        {{ random_practice_suggestion.description }}
+    <div *ngFor="let random_practice_suggestion of random_practice_suggestions" class="col-3 col-md-2" (click)="gotoCommunity(random_practice_suggestion.id)">
+      <img alt="community-user-image" border="1" class="community-img-circle" src="assets/flags-mini/{{random_practice_suggestion.id }}.png"> 
+              <p><span>{{ random_practice_suggestion.text }}</span></p>
     </div>
-        </div>
- 
 </div>
+ 

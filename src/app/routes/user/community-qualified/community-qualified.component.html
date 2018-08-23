@@ -1,0 +1,46 @@
+        <hr />
+               <div class="row"> 
+                    <div class="col-12"> 
+                   
+                    <h4 class="community_title_2">Live Native Users: (Qualified Teachers)</h4>      
+            </div>
+         
+            <div *ngFor="let nativeOnline of nativeQualifieds.nativeQualified" class="col-xs-3 comunity_image_container">
+                <p>
+                    <img alt="community-user-image" class="community-img-circle" src="assets/img/user/{{ nativeOnline.profileimg}}">
+                </p>
+                <p class="profile_name">
+                    {{ nativeOnline.name}}
+                </p> 
+                <button  type="button" class="btn btn-info profile_button" (click)="getUser(nativeOnline.id)" (click)="modalLg.show()">View</button>
+            </div>
+            </div>
+
+
+<div bsModal class="modal fade" #modalLg="bs-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="mt-0 modal-title">{{ user_profile_q.name }}</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+           
+                
+                <h5>Native Languages</h5>
+                <div *ngFor="let settings of languages_off">
+                    <p> {{ settings_q.description  }}</p>
+                </div>
+                <h5>About Me</h5>
+                <P>{{ user_setting_q.about_me  }}</P>
+                <h5>Qulifications</h5>
+                 <P>{{ user_setting_q.qualification  }}</P>
+                <h5>Where do I live</h5>
+                <p></p>
+                <p><br><img alt="community-user-image" border="1" class="medium " src="assets/flags-normal/{{ lang_id_q }}.png" /></p>
+                <p></p>
+            </div>
+        </div>
+     
+</div>
+    </div>

@@ -7,7 +7,7 @@
   <button type="submit"><i class="fa fa-search example"></i></button>
 
 <ul class="search-result">
-<li *ngFor="let search of searches$ | async"  (click)="gotoCommunity(search)"  >
+<li *ngFor="let search of searches$ | async"  (click)="gotoCommunity(search.code)"  >
  
 
     <div routerLinkActive="active"><span>{{search.description}}</span></div>

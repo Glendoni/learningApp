@@ -15,16 +15,22 @@ import { User, Language, Search, NativeOnline, RootObject } from '../../../_mode
 export class HomeComponent implements OnInit {
 random_practice_suggestions ; 
     
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
       
-       this
-              .userService
+       this.userService
               .getPracticeFlags()
               .subscribe(data =>
                 this.random_practice_suggestions = data
               );
   }
+    
+        gotoCommunity(code: string): void {
+    
+        console.log(code);
+   this.router.navigate(['/community',code]);
+   
+}
 
 }

@@ -1,0 +1,9 @@
+<hr />
+<h2>Recently Practiced</h2>
+ 
+<div class="row">
+    <div *ngFor="let recently_practice of recently_practices" class="random_practice_suggestion col-4 col-md-2" (click)="gotoCommunity(recently_practice.code)">
+        <a><img alt="community-user-image" class="community-img-circle   " src="assets/flags-mini/{{recently_practice.code }}.png"></a><br />
+        {{ recently_practice.description }}
+    </div>
+</div>

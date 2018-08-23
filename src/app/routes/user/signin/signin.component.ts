@@ -32,7 +32,8 @@ export class SigninComponent implements OnInit {
        this.authenticationService.logout();
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+        //this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     }
     
     // convenience getter for easy access to form fields

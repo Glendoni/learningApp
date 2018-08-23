@@ -38,9 +38,7 @@ export const routes = [
     { path: 'recover', component: RecoverComponent },
     { path: 'signinv2', component: Signinv2Component },
     { path: 'signupv2', component: Signupv2Component },
-    { path: 'home', component: HomeComponent },
-    { path: 'search', component: SearchComponent },
-    { path: 'community/:id', component: CommunityComponent },
+   
     // Not found
     { path: '**', redirectTo: 'signin' }
 

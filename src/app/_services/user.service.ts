@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 
-import { User, Language, Search, NativeOnline, RootObject } from '../_models';
+import { User, Language, Search, NativeOnline, RootObject , OfflineObject} from '../_models';
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +64,17 @@ export class UserService {
      return this.http.get(`${this.url}/api/auth/nativeOnline/`+id);
 
    }
+     getNativeOffline(id: string) {
+       
+     return this.http.get(`${this.url}/api/auth/nativeOffline/`+id);
+
+   }
+    
+     getNativeQualified(id: string) {
+       
+     return this.http.get(`${this.url}/api/auth/nativeQualified/`+id);
+
+   }
      getCommunityUserFullDetails(id: number) {
        
      return this.http.get(`${this.url}/api/auth/nativeOnline/fr`);
@@ -71,9 +82,15 @@ export class UserService {
    }
     
     getPracticeFlags(){
+       return this.http.get(`${this.url}/api/lang`);  
+    }
+    
+    getRecentlyPracticed(){
         
-       return this.http.get(`${this.url}/api/auth/practice_another_lang`); 
+         return this.http.get(`${this.url}/api/auth/recent_practices`); 
+    }
+    getUserProfile(id: number){
         
-        
+         return this.http.get(`${this.url}/api/auth/users/`+id); 
     }
 }  

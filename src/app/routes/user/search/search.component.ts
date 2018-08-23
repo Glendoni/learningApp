@@ -37,11 +37,10 @@ onSelect(search: Search): void {
           console.log(search)
   }
 
-gotoCommunity(id: string): void {
+gotoCommunity(code: string): void {
     
-        console.log(id.code)
-        this.router.navigate(['/community',id.code]);
-   
+        console.log(code)
+        this.router.navigate(['/community',code]);
 } 
 
     
