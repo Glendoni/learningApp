@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -14,6 +14,8 @@ import { User, Language, Search } from '../../../_models';
 })
 export class SearchComponent implements OnInit {
 
+@Output() showrandom = new EventEmitter<boolean>();
+    
     code;
     searches$: Observable<Search[]>;
     private searchTerms = new Subject<string>();
@@ -30,6 +32,7 @@ selectedCommunity: Search;
     // Push a search term into the observable stream.
 search(term: string): void {
 this.searchTerms.next(term);
+    console.log(term); 
 }
 
 onSelect(search: Search): void {

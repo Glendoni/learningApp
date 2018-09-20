@@ -1,11 +1,11 @@
-import { switchMap } from 'rxjs/operators';
+import { switchMap,map } from 'rxjs/operators';
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormGroup, FormArray, Validator, FormBuilder, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { AlertService, UserService } from '../../../_services';
 
-import { User, Language, Search, NativeOnline, RootObject } from '../../../_models';
+import { User, Language, Search, NativeOnline, QualifiedObject ,OnlineObject,ProfileObject,OfflineObject  } from '../../../_models';
 
 @Component({
   selector: 'app-community',
@@ -14,14 +14,25 @@ import { User, Language, Search, NativeOnline, RootObject } from '../../../_mode
 })
 export class CommunityComponent implements OnInit {
     
-nativeOnlines: RootObject[]; 
+nativeOnlines: Array<OnlineObject> = []; 
+nativeQualified: Array<QualifiedObject> = []; 
+nativeOffline: Array<OfflineObject> = []; 
+user_setting:  Array<ProfileObject[]> = [] ; 
+    
+public maxRat: number = 10;
+ public rate: number = 7;
+ public overStar: number;
+public percent: number;    
    native: any; 
     lang_flag;
     lang_id;
+    name : string;
     user_profile= [];
-    user_setting= [];
+    profile= [];
+   // user_setting= [];
+   
     languages = []  ;
-    showmodal = false;
+    showmodalcontent = false;
    constructor(private fb: FormBuilder,
                 private route: ActivatedRoute,
                  private router: Router,
@@ -29,43 +40,76 @@ nativeOnlines: RootObject[];
 
    ngOnInit() {
        
+       
      this.lang_id = this.route.snapshot.params.id
-          this
-              .userService
-              .getNativeOnline(this.route.snapshot.params.id)
-              .subscribe((data: RootObject[]) =>{
-              if(data.nativeOnline.length >= 1){
+          this.userService
+              .getNativeOnline(this.lang_id)
+              .subscribe((data: Array<OnlineObject>) =>{
+            // if(data.nativeOnline.length >= 1){
                 this.nativeOnlines = data;
-               this.lang_flag = data.nativeOnline[0].description;
+               // this.lang_flag = data.nativeOnline[0].description;
                // this.lang_id = data.nativeOnline[0].code;
                  // this.languages
-              }
+              // }
               
                //this.native.nativeOnline[0].description
             
-              });
+              }) 
+       
+       
+          this
+              .userService
+              .getNativeQualified(this.lang_id)
+              .subscribe((data: Array<QualifiedObject>) =>{
+           
+                this.nativeQualified = data;
+            // this.lang_flag_q = data.nativeQualified[0].description;
+             //this.lang_id_q = data.nativeQualified[0].code;
+                 // this.languages
+              })
+              
+    
+              
+              
+          this
+              .userService
+              .getNativeOffline(this.lang_id)
+              .subscribe((data: Array<OfflineObject>) =>{
+           
+                this.nativeOffline = data;
+            // this.lang_flag_q = data.nativeQualified[0].description;
+             //this.lang_id_q = data.nativeQualified[0].code;
+                 // this.languages
+              })         
+             
+       
        
  
   }
     
             getUser(code: number){
-                console.log(code);
-                this.showmodal = true;
-                this.user_profile = [];
-            this.userService
+                this.showmodalcontent = false;
+                  this.showmodalcontent = true;
+                this.user_setting = [];
+                 this.userService
                 .getUserProfile(code)
-                .subscribe(data => {
-                           this.user_profile = data.data[0];
-                            this.user_setting = data.data[0].settings[0];
-                this.languages = data.data[0].languages ;
-                
-              
-                })
+                .subscribe((data: any)  =>{
+                     this.user_setting = data
+
+                 });
                
    //this.router.navigate(['/community',code]);
-   
+     console.log(this.user_setting)
 }
     
-  
+   // RATINGS METHODS
+    public hoveringOver(value: number): void {
+        this.overStar = value;
+       this.percent = 100 * (value / this.maxRat);
+    };
+
+    public resetStar(): void {
+        this.overStar = void 0;
+    }
       
 }

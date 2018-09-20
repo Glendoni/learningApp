@@ -1,6 +1,7 @@
 ﻿export interface NativeOffline {
 	id: number;
     name: string;
+    profileimg: string;
 	qualified_teacher: number;
 	contribute_to_community: number;
 	action: number;
@@ -9,6 +10,6 @@
 	online: boolean;
 }
 
-export interface RootObject {
+export interface OfflineObject {
 	nativeOffline: NativeOffline[];
 }

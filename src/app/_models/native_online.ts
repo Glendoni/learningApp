@@ -9,7 +9,7 @@
 	online: boolean;
 }
 
-export interface RootObject {
+export interface OnlineObject {
 	nativeOnline: NativeOnline[];
 }
 

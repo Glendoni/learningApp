@@ -10,7 +10,7 @@
 <li *ngFor="let search of searches$ | async"  (click)="gotoCommunity(search.code)"  >
  
 
-    <div routerLinkActive="active"><span>{{search.description}}</span></div>
+    <div routerLinkActive="active"><span>{{search.code}}</span></div>
  
 </li>
 </ul>

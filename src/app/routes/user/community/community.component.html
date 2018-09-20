@@ -1,80 +1,128 @@
- 
-<hr /> 
+<hr />
 <div *ngIf="nativeOnlines">
-          <div class="row">
-            <div class="col-xs-7 community_flag">
-                <p class="col-xs-12 community-user-image">
-                    <img alt="community-user-image" border="1" class="medium " src="assets/flags-normal/{{ lang_id }}.png" />
-                </p> 
-                <p class="col-xs-12 community_flag_description">{{ lang_flag}}</p> 
+    <div class="row">
+        <div class="col-xs-7 community_flag">
+            <p class="col-xs-12 community-user-image">
+                <img alt="community-user-image" border="1" class="medium " src="assets/flags-normal/{{ lang_id }}.png" />
+            </p>
+            <p class="col-xs-12 community_flag_description">{{ lang_flag}}</p>
+        </div>
+        <div class="col-md-11">
+            <div class="row">
+                <div class="col-12">
+                    <p class="community_title_1">Language Community</p>
+                    <h4 class="community_title_2">Live Native Users: (Currently Online)</h4>
+                </div>
+                <div *ngFor="let nativeOnline of nativeOnlines.nativeOnline" class="col-xs-3 comunity_image_container">
+                    <p>
+                        <img alt="community-user-image" class="community-img-circle" src="assets/img/user/{{ nativeOnline.profileimg}}">
+                    </p>
+                    <p class="profile_name">
+                        {{ nativeOnline.name}}
+                    </p>
+                    <button type="button" class="btn btn-info profile_button" (click)="getUser(nativeOnline.id)" (click)="modalLg.show()">View</button>
+                </div>
             </div>
-              
-        <div class="col-md-11">  
-              <div class="row"> 
-            <div class="col-12"> 
-                    <p class="community_title_1">Language Community</p> 
-                    <h4 class="community_title_2">Live Native Users: (Currently Online)</h4>      
+            <div *ngIf="nativeOffline">
+                <hr />
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="community_title_2">Native Users: (Currently Offline)</h4>
+                    </div>
+                    <div *ngFor="let nativeOffline of nativeOffline.nativeOffline" class="col-xs-3 comunity_image_container">
+                        <p>
+                            <img alt="community-user-image" class="community-img-circle opa" src="assets/img/user/{{ nativeOffline.profileimg}}">
+                        </p>
+                        <p class="profile_name">
+                            {{ nativeOffline.name}}
+                        </p>
+                        <button type="button" [disabled]="!profileForm" class="btn btn-info profile_button" (click)="getUser(nativeOffline.id)" (click)="modalLg.show()">View</button>
+                    </div>
+                </div>
             </div>
-            <div *ngFor="let nativeOnline of nativeOnlines.nativeOnline" class="col-xs-3 comunity_image_container">
-                <p>
-                    <img alt="community-user-image" class="community-img-circle" src="assets/img/user/{{ nativeOnline.profileimg}}">
-                </p>
-                <p class="profile_name">
-                    {{ nativeOnline.name}}
-                </p> 
-                <button  type="button" class="btn btn-info profile_button" (click)="getUser(nativeOnline.id)" (click)="modalLg.show()">View</button>
-            </div>
-            </div>
-            
-     <!--   <app-community-offline></app-community-offline>
+            <!--     <app-community-offline></app-community-offline>
         <app-community-qualified></app-community-qualified> -->
         </div>
-          
-        
     </div>
-
-     </div>     
-
-
-           <!-- Large modal-->
+</div>
+<div *ngIf="nativeQualified">
+    <hr />
+    <div class="row">
+        <div class="col-12">
+            <h4 class="community_title_2">Live Native Users: (Qualified Teachers)</h4>
+        </div>
+        <div *ngFor="let nativeOnline of nativeQualified.nativeQualified" class="col-xs-3 comunity_image_container">
+            <p>
+                <img alt="community-user-image" class="community-img-circle" src="assets/img/user/{{ nativeOnline.profileimg}}">
+            </p>
+            <p class="profile_name">
+                {{ nativeOnline.name}}
+            </p>
+            <button type="button" class="btn btn-info profile_button" (click)="getUser(nativeOnline.id)" (click)="modalLg.show()">View</button>
+        </div>
+    </div>
+</div>
+<!-- Large modal-->
 <div bsModal class="modal fade" #modalLg="bs-modal">
+  
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="mt-0 modal-title">{{ user_profile.name }}</h5>
+                <h5 class="mt-0 modal-title">Language Community Contributer</h5>
+               
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
             </div>
             <div class="modal-body">
-                
-                
-                <h5>Native Languages</h5>
-                <div *ngFor="let settings of languages">
-                    <p> {{ settings.description  }}</p>
+                   <div *ngFor="let profile of user_setting.data async ">
+                <div class="row" [hidden]="!showmodalcontent">
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <p><img alt="community-user-image" class="community-img-circle img_adjust_modal" src="assets/img/user/{{ profile.profile_img}}"><br>
+                            <button type="button" class="btn btn-info">[Book Me]</button></p>
+                        <p></p>
+                    </div>
+                    <div class="col-xs-10 col-sm-10 col-md-8 col-lg-8">
+                        <p class="center">{{ profile.name }}</p>
+                         <rating [(ngModel)]="rate" class="center" [max]="maxRat" [readonly]="isReadonly" (onHover)="hoveringOver($event)" (onLeave)="resetStar()" [titles]="['one','two','three']" stateOn="fa fa-star text-yellow" stateOff="fa fa-star-o"></rating>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        Online Status<br>
+                        <button type="button" class="btn btn-info right">[Available for chat now]</button>
+                    </div>
                 </div>
-                <h5>About Me</h5>
-                <P>{{ user_setting.about_me  }}</P>
-                <h5>Qulifications</h5>
-                 <P>{{ user_setting.qualification  }}</P>
-                <h5>Where do I live</h5>
-                <p></p>
-                <p><br><img alt="community-user-image" border="1" class="medium " src="assets/flags-normal/{{ lang_id }}.png" /></p>
-                <p></p>
+                <div class="row" [hidden]="!showmodalcontent">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        
+                       
+                        <div *ngFor="let set of profile.settings "> 
+                   <p>About Me</p>
+                            <p>{{ set.about_me }}</p>
+                            
+                            <p>Qualifications</p>
+                            <p>{{ set.qualification }}</p>
+                        </div>
+                        <p>Native Languages</p>
+                       
+                            
+                           
+                          <div *ngFor="let lang of profile.languages ">  
+                     <p> {{ lang.description }} - {{ lang.languageSpokenLevelArr}} </p> 
+                        </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <p>Where do I live
+                        <br><img alt="community-user-image" border="1" class="medium " src="assets/flags-normal/{{ lang_id }}.png" /></p>
+                        <p></p>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
-     
-</div>
     </div>
-  
+</div>
 <div *ngIf="!nativeOnlines">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>Not found</h4>
         </div>
-
     </div>
- 
-
-    
-                    
- 
- 
+</div>

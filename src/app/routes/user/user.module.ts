@@ -14,8 +14,8 @@ import { SearchComponent } from './search/search.component';
 import { CommunityComponent } from './community/community.component';
 import { UserComponent } from './user/user.component';
 import { RecentPracticesComponent } from './recent-practices/recent-practices.component';
-import { CommunityOfflineComponent } from './community-offline/community-offline.component';
-import { CommunityQualifiedComponent } from './community-qualified/community-qualified.component';
+//import { CommunityOfflineComponent } from './community-offline/community-offline.component';
+//import { CommunityQualifiedComponent } from './community-qualified/community-qualified.component';
  
 
   const routes: Routes = [
@@ -53,9 +53,9 @@ import { CommunityQualifiedComponent } from './community-qualified/community-qua
         SearchComponent,
         CommunityComponent,
         UserComponent,
-        RecentPracticesComponent,
-        CommunityOfflineComponent,
-        CommunityQualifiedComponent
+        RecentPracticesComponent
+        //CommunityOfflineComponent,
+        //CommunityQualifiedComponent
     ],
     exports: [
         RouterModule,

@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormGroup, FormArray, Validator, FormBuilder, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { AlertService, UserService } from '../../../_services';
 
-import { User, Language, Search, NativeOnline, RootObject } from '../../../_models';
+import { User, Language, Search, NativeOnline } from '../../../_models';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,6 @@ random_practice_suggestions ;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-      
        this.userService
               .getPracticeFlags()
               .subscribe(data =>
