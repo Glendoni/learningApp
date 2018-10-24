@@ -14,6 +14,7 @@ import { SearchComponent } from './search/search.component';
 import { CommunityComponent } from './community/community.component';
 import { UserComponent } from './user/user.component';
 import { RecentPracticesComponent } from './recent-practices/recent-practices.component';
+import { BookingComponent } from './booking/booking.component';
 //import { CommunityOfflineComponent } from './community-offline/community-offline.component';
 //import { CommunityQualifiedComponent } from './community-qualified/community-qualified.component';
  
@@ -30,9 +31,9 @@ import { RecentPracticesComponent } from './recent-practices/recent-practices.co
     { path: 'community/:id', component: CommunityComponent }
             ]
        },
-      { path: 'signin', component: SigninComponent },
+     { path: 'signin', component: SigninComponent },
      { path: 'signup', component: SignupComponent },
-      { path: 'lock', component: LockComponent },
+     { path: 'lock', component: LockComponent },
      { path: 'recover', component: RecoverComponent },
  ];
 
@@ -53,7 +54,8 @@ import { RecentPracticesComponent } from './recent-practices/recent-practices.co
         SearchComponent,
         CommunityComponent,
         UserComponent,
-        RecentPracticesComponent
+        RecentPracticesComponent,
+        BookingComponent
         //CommunityOfflineComponent,
         //CommunityQualifiedComponent
     ],

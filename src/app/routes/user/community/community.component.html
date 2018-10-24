@@ -1,4 +1,5 @@
 <hr />
+
 <div *ngIf="nativeOnlines">
     <div class="row">
         <div class="col-xs-7 community_flag">
@@ -80,15 +81,19 @@
                             <button type="button" class="btn btn-info">[Book Me]</button></p>
                         <p></p>
                     </div>
+
                     <div class="col-xs-10 col-sm-10 col-md-8 col-lg-8">
                         <p class="center">{{ profile.name }}</p>
                          <rating [(ngModel)]="rate" class="center" [max]="maxRat" [readonly]="isReadonly" (onHover)="hoveringOver($event)" (onLeave)="resetStar()" [titles]="['one','two','three']" stateOn="fa fa-star text-yellow" stateOff="fa fa-star-o"></rating>
                     </div>
+                     <app-booking></app-booking>
                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                         Online Status<br>
                         <button type="button" class="btn btn-info right">[Available for chat now]</button>
                     </div>
                 </div>
+
+
                 <div class="row" [hidden]="!showmodalcontent">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         
@@ -102,7 +107,7 @@
                         </div>
                         <p>Native Languages</p>
                        
-                            
+                           
                            
                           <div *ngFor="let lang of profile.languages ">  
                      <p> {{ lang.description }} - {{ lang.languageSpokenLevelArr}} </p> 
@@ -116,6 +121,9 @@
                 </div>
                 </div>
             </div>
+
+
+
         </div>
     </div>
 </div>

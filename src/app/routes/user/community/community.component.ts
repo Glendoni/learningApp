@@ -14,94 +14,75 @@ import { User, Language, Search, NativeOnline, QualifiedObject ,OnlineObject,Pro
 })
 export class CommunityComponent implements OnInit {
     
-nativeOnlines: Array<OnlineObject> = []; 
-nativeQualified: Array<QualifiedObject> = []; 
-nativeOffline: Array<OfflineObject> = []; 
-user_setting:  Array<ProfileObject[]> = [] ; 
-    
-public maxRat: number = 10;
- public rate: number = 7;
- public overStar: number;
-public percent: number;    
-   native: any; 
-    lang_flag;
-    lang_id;
-    name : string;
-    user_profile= [];
-    profile= [];
+  nativeOnlines: Array<OnlineObject> = []; 
+  nativeQualified: Array<QualifiedObject> = []; 
+  nativeOffline: Array<OfflineObject> = []; 
+  user_setting:  Array<ProfileObject[]> = [] ;
+  public maxRat: number = 10;
+  public rate: number = 7;
+  public overStar: number;
+  public percent: number;    
+  native: any; 
+  lang_flag;
+  lang_id;
+  name : string;
+  user_profile= [];
+  profile= [];
    // user_setting= [];
    
     languages = []  ;
     showmodalcontent = false;
-   constructor(private fb: FormBuilder,
+   constructor( private fb: FormBuilder,
                 private route: ActivatedRoute,
-                 private router: Router,
-                 private userService: UserService) { }
+                private router: Router,
+                private userService: UserService) { }
 
    ngOnInit() {
-       
-       
-     this.lang_id = this.route.snapshot.params.id
-          this.userService
+      
+     this.getNativeOnline();  //online  users  
+     this.getNativeOffline(); //offline  users    
+     this.getNativeQualified(); //qulaified users
+   
+  }
+      getNativeOnline(){
+          this.lang_id = this.route.snapshot.params.id
+              this.userService
               .getNativeOnline(this.lang_id)
               .subscribe((data: Array<OnlineObject>) =>{
-            // if(data.nativeOnline.length >= 1){
                 this.nativeOnlines = data;
-               // this.lang_flag = data.nativeOnline[0].description;
-               // this.lang_id = data.nativeOnline[0].code;
-                 // this.languages
-              // }
-              
-               //this.native.nativeOnline[0].description
-            
               }) 
+            }
        
-       
+       getNativeQualified(){
           this
               .userService
               .getNativeQualified(this.lang_id)
               .subscribe((data: Array<QualifiedObject>) =>{
-           
                 this.nativeQualified = data;
-            // this.lang_flag_q = data.nativeQualified[0].description;
-             //this.lang_id_q = data.nativeQualified[0].code;
-                 // this.languages
               })
-              
+          }
     
-              
-              
+        getNativeOffline(){
           this
               .userService
               .getNativeOffline(this.lang_id)
               .subscribe((data: Array<OfflineObject>) =>{
-           
                 this.nativeOffline = data;
-            // this.lang_flag_q = data.nativeQualified[0].description;
-             //this.lang_id_q = data.nativeQualified[0].code;
-                 // this.languages
-              })         
-             
-       
-       
- 
-  }
-    
-            getUser(code: number){
-                this.showmodalcontent = false;
-                  this.showmodalcontent = true;
+              }) 
+          }
+
+        getUser(code: number){
+            this.showmodalcontent = false;
+                this.showmodalcontent = true;
                 this.user_setting = [];
-                 this.userService
+                this.userService
                 .getUserProfile(code)
                 .subscribe((data: any)  =>{
                      this.user_setting = data
+                  });
+                console.log(this.user_setting)
+          }
 
-                 });
-               
-   //this.router.navigate(['/community',code]);
-     console.log(this.user_setting)
-}
-    
    // RATINGS METHODS
     public hoveringOver(value: number): void {
         this.overStar = value;
