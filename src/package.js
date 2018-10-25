@@ -29,9 +29,10 @@
     "nestable": "dbushell/Nestable"
   },
   "dependencies": {
+    "@agm/core": "1.0.0-beta.2",
     "@angular-devkit/build-angular": "^0.6.8",
     "@angular/cli": "6.0.0",
-    "@agm/core": "1.0.0-beta.2",
+    "@angular/compiler-cli": "6.0.0",
     "@angular/animations": "6.0.0",
     "@angular/common": "6.0.0",
     "@angular/compiler": "6.0.0",
